@@ -17,7 +17,12 @@ final class RouterFactory
 	public static function createRouter()
 	{
 		$router = new RouteList;
-		$router[] = new Route('<presenter>/<action>', 'Homepage:default');
+		$router[] = $apiList =  new RouteList('RemoteApi');
+		$apiList[] = new Route('api/<action=default>', [
+			'presenter' => 'Data',
+		]);
+
+		$router[] = new Route('/<action>', 'Homepage:default');
 		return $router;
 	}
 }

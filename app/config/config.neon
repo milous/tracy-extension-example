@@ -24,4 +24,6 @@ database:
 
 
 services:
+	-
+		factory: App\HttpClient
 	router: App\RouterFactory::createRouter
