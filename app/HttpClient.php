@@ -47,12 +47,18 @@ class HttpClient
 
 			return $apiResponse->getBody();
 
-		} catch (\Throwable $e) {
+		} catch (\GuzzleHttp\Exception\RequestException $e) {
 			$this->logger->log(
 				\sprintf('Response error: %s %s: %s', $method, $uri, $e->getMessage())
 			);
 
-			throw $e;
+			throw new RequestException(
+				\sprintf('%s Request failed', $method),
+				$e->getRequest(),
+				$e->getResponse(),
+				$e->getCode(),
+				$e
+			);
 		}
 	}
 

@@ -27,3 +27,11 @@ services:
 	-
 		factory: App\HttpClient
 	router: App\RouterFactory::createRouter
+
+	blueScreenRequestPanel:
+		factory: App\BlueScreenRequestPanel
+
+
+tracy:
+	blueScreen:
+	 	- @blueScreenRequestPanel
